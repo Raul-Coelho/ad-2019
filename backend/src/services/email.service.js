@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const mailserver = {
     service: 'gmail',
     auth: {
-        user: 'YOUR EMAIL TO SEND',
+        user: 'YOUR EMAIL TO SEND', // Never up your credentials
         pass: 'SecretPassoword' // naturally, replace both with your real credentials or an application-specific password
     }
 }
