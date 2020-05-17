@@ -1,30 +1,22 @@
 const nodemailer = require('nodemailer');
 
+
 const mailserver = {
-    host: 'smtp.ethereal.email',
-    port: 3003,
+    service: 'gmail',
     auth: {
-        user: process.env.USER_MAIL_SERVER,
-        pass: process.env.PASS_MAIL_SERVER
+        user: 'YOUR EMAIL TO SEND',
+        pass: 'SecretPassoword' // naturally, replace both with your real credentials or an application-specific password
     }
 }
-
-const FROM = 'testersson@ad-2019.com';
-const SUBJECT = 'Resultado do sorteio do amigo secreto';
-const BODY = `
-    <div>
-        Olá <strong>{0}</strong>. Seu amigo(a) secretro é <strong>{1}</strong>.
-    </div>
-`;
 
 const transporter = nodemailer.createTransport(mailserver);
 
 exports.send = (personName, to, friendName) => {
     const message = {
-        from: FROM,
+        from: 'YOUR EMAIL TO RECIVED',
         to: to,
-        subject: SUBJECT,
-        html: BODY.replace('{0}', personName).replace('{1}', friendName)
+        subject: 'Draw Result ! ',
+        html: 'Hello ' + personName + ',' + ' you friend draw at: ' + friendName
     }
 
     transporter.sendMail(message, (error, info) => {
