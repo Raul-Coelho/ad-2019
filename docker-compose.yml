@@ -1,0 +1,51 @@
+version: "2"
+services:
+    ad-2019-mongo:
+        image: mongo
+        restart: always
+        container_name: ad-2019-mongo
+        volumes:
+            - ./data-node:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --noauth
+        networks:
+            - webappnetwork
+
+    ad-2019-backend:
+        image: ad-2019-backend
+        build: ./backend/
+        restart: always
+        ports:
+            - "9000:9000"
+        volumes:
+            - ./backend:/backend
+            - /backend/node_modules
+        depends_on:
+            - ad-2019-mongo
+        links:
+            - "ad-2019-mongo:ad-2019-database-link"
+        networks:
+            - webappnetwork
+
+    ad-2019-frontend:
+        stdin_open: true
+        tty: true
+        image: node:12.16.1
+        build: ./frontend/
+        restart: always
+        ports:
+            - "3000:3000"
+        working_dir: /frontend/src/app
+        volumes:
+            - ./frontend:/frontend/src/app
+        entrypoint: ["npm", "start"]
+        links:
+            - ad-2019-backend
+        networks:
+            - webappnetwork
+        depends_on:
+            - ad-2019-backend
+networks:
+    webappnetwork:
+        driver: bridge
