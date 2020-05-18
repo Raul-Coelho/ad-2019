@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/ad-2019-mongo', { useNewUrlParser: true });
+mongoose.connect('mongodb://ad-2019-mongo:27017/ad-2019-mongo', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
 
