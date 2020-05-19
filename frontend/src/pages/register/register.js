@@ -37,7 +37,7 @@ function Register() {
 
             <Card style={{ width: '30rem', margin: '2rem', left: '25rem' }}>
                 <Card.Body>
-                    <Card.Title>Register in Secret Santa :D</Card.Title>
+                    <Card.Title>Register up to 4 people in Secret Santa :D</Card.Title>
                     <Form onSubmit={handleRegister}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Name</Form.Label>
@@ -64,6 +64,8 @@ function Register() {
                         <Button onClick={golist} variant="dark w-100 mt-2" type="submit">
                             List
                     </Button>
+
+
                     </Form>
                 </Card.Body>
             </Card>
